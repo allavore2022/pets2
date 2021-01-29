@@ -18,5 +18,12 @@ $f3->route('GET /', function () {
     echo $view->render('views/pet-home.html');
 });
 
+//Define a order root
+$f3->route('GET /order', function () {
+//    echo "Order Page";
+    $view = new Template();
+    echo $view->render('views/pet-order.html');
+});
+
 //Rune fat free
 $f3->run();
