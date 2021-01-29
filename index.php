@@ -25,5 +25,29 @@ $f3->route('GET /order', function () {
     echo $view->render('views/pet-order.html');
 });
 
+//Define a "order2" route
+$f3->route('POST /order2', function () {
+    //Add data from pet-order to Session array
+    if(isset($_POST['pet'])) {
+        $_SESSION['pet'] = $_POST['pet'];
+    }
+    if(isset($_POST['color'])) {
+        $_SESSION['color'] = $_POST['color'];
+    }
+
+    //Display a view
+    $view = new Template();
+    echo $view->render('views/pet-order-2.html');
+});
+
+//Define a "summary" route
+$f3->route('POST /summary', function () {
+
+    //Display a view
+    $view = new Template();
+    echo $view->render('views/summary.html');
+});
+
+
 //Rune fat free
 $f3->run();
