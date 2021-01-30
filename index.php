@@ -4,6 +4,9 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+//Start a session
+session_start();
+
 //Require the autoload file
 require_once('vendor/autoload.php');
 
@@ -13,7 +16,7 @@ $f3->set('DEBUG', 3);
 
 //Define a default root (home page)
 $f3->route('GET /', function () {
- //   echo "My Pets";
+    //   echo "My Pets";
     $view = new Template();
     echo $view->render('views/pet-home.html');
 });
@@ -28,10 +31,10 @@ $f3->route('GET /order', function () {
 //Define a "order2" route
 $f3->route('POST /order2', function () {
     //Add data from pet-order to Session array
-    if(isset($_POST['pet'])) {
+    if (isset($_POST['pet'])) {
         $_SESSION['pet'] = $_POST['pet'];
     }
-    if(isset($_POST['color'])) {
+    if (isset($_POST['color'])) {
         $_SESSION['color'] = $_POST['color'];
     }
 
@@ -42,6 +45,10 @@ $f3->route('POST /order2', function () {
 
 //Define a "summary" route
 $f3->route('POST /summary', function () {
+    //Add data from order2 to Session array
+    if (isset($_POST['name'])) {
+        $_SESSION['name'] = $_POST['name'];
+    }
 
     //Display a view
     $view = new Template();
